@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гайды | @buhaistrikalo</title>
+    
+    <meta name="description" content="Практические гайды по AI-разработке, вайб-кодингу и автоматизации от @buhaistrikalo">
+    <meta name="author" content="@buhaistrikalo">
+    
+    <meta property="og:title" content="Гайды | @buhaistrikalo">
+    <meta property="og:description" content="Практические гайды по AI-разработке, вайб-кодингу и автоматизации">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    
+    <style>
+        :root {
+            --bg-primary: #0d0d0f;
+            --bg-card: #18181c;
+            --accent-primary: #a855f7;
+            --accent-secondary: #c084fc;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .author {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .author a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+        }
+
+        .guides-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .guide-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .guide-badge {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--accent-secondary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .guide-card h2 {
+            color: var(--text-primary);
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .guide-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Гайды</h1>
+            <p class="subtitle">Практические материалы по AI-разработке и вайб-кодингу</p>
+            <p class="author">Автор: <a href="https://t.me/buhaistrikalo">@buhaistrikalo</a></p>
+        </header>
+
+        <div class="guides-grid">
+            <a href="./claude-code/" class="guide-card">
+                <span class="guide-badge">Claude Code</span>
+                <h2>Кастомизация Claude Code</h2>
+                <p>CLAUDE.md, слэш-команды, субагенты и навыки — как «научить» Claude Code вашему проекту</p>
+            </a>
+
+            <!-- Следующие гайды добавляй сюда -->
+            <!--
+            <a href="./другой-гайд/" class="guide-card">
+                <span class="guide-badge">Тема</span>
+                <h2>Название гайда</h2>
+                <p>Описание гайда</p>
+            </a>
+            -->
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://t.me/buhaistrikalo">Telegram</a>
+                <a href="https://github.com/buhaistrikalo">GitHub</a>
+            </div>
+            <p class="copyright">@buhaistrikalo • 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
