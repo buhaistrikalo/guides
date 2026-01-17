@@ -3,7 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гайд по кастомизации Claude Code</title>
+    <title>Кастомизация Claude Code: CLAUDE.md, слэш-команды, субагенты и навыки</title>
+    <meta name="description" content="Полный гайд по настройке Claude Code: CLAUDE.md для памяти проекта, слэш-команды для макросов, субагенты для изолированных задач и навыки для автоматических воркфлоу. Примеры кода и сравнение подходов.">
+    <meta name="keywords" content="Claude Code, CLAUDE.md, слэш-команды, субагенты, навыки, Skills, AI-разработка, Anthropic, кастомизация">
+    <meta name="author" content="Кирилл @buhaistrikalo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://buhaistrikalo.github.io/guides/claude-code/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://buhaistrikalo.github.io/guides/claude-code/">
+    <meta property="og:title" content="Кастомизация Claude Code: CLAUDE.md, слэш-команды, субагенты и навыки">
+    <meta property="og:description" content="Полный гайд по настройке Claude Code: как научить AI вашему проекту через 4 механизма кастомизации с примерами кода.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="article:author" content="https://t.me/buhaistrikalo">
+    <meta property="article:published_time" content="2025-01-16">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://buhaistrikalo.github.io/guides/claude-code/">
+    <meta name="twitter:title" content="Кастомизация Claude Code: CLAUDE.md, слэш-команды, субагенты и навыки">
+    <meta name="twitter:description" content="Полный гайд по настройке Claude Code: как научить AI вашему проекту через 4 механизма кастомизации с примерами кода.">
+    <meta name="twitter:image" content="https://buhaistrikalo.github.io/guides/claude-code/og-image.png">
+
+    <!-- OG Image -->
+    <meta property="og:image" content="https://buhaistrikalo.github.io/guides/claude-code/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Кастомизация Claude Code - гайд по CLAUDE.md, слэш-командам, субагентам и навыкам">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://t.me">
+    <link rel="dns-prefetch" href="https://t.me">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0d0d0f">
+    <meta name="msapplication-TileColor" content="#0d0d0f">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Кастомизация Claude Code: CLAUDE.md, слэш-команды, субагенты и навыки",
+        "description": "Полный гайд по настройке Claude Code: CLAUDE.md для памяти проекта, слэш-команды для макросов, субагенты для изолированных задач и навыки для автоматических воркфлоу.",
+        "author": {
+            "@type": "Person",
+            "name": "Кирилл",
+            "url": "https://t.me/buhaistrikalo"
+        },
+        "datePublished": "2025-01-16",
+        "dateModified": "2025-01-17",
+        "publisher": {
+            "@type": "Person",
+            "name": "Кирилл @buhaistrikalo"
+        },
+        "inLanguage": "ru-RU",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://buhaistrikalo.github.io/guides/claude-code/"
+        },
+        "articleSection": "AI Development",
+        "keywords": ["Claude Code", "CLAUDE.md", "слэш-команды", "субагенты", "навыки", "AI-разработка"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Гайды",
+                "item": "https://buhaistrikalo.github.io/guides/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Кастомизация Claude Code",
+                "item": "https://buhaistrikalo.github.io/guides/claude-code/"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Что такое CLAUDE.md?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CLAUDE.md — это markdown-файл, который автоматически загружается при каждом запуске Claude Code. Это «карта памяти» вашего проекта — всё, что Claude должен знать с самого начала."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Чем отличаются слэш-команды от навыков?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Слэш-команды вызываются явно через /команда, а навыки автоматически обнаруживаются Claude по описанию задачи. Навыки также поддерживают вспомогательные файлы и более сложные воркфлоу."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Когда использовать субагентов?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Субагенты идеальны для задач с загрузкой документации и сложным поиском, так как они сохраняют основной контекст чистым и работают в изолированном окне."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какой механизм кастомизации выбрать?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CLAUDE.md для постоянных правил проекта, слэш-команды для явных повторяемых действий, субагенты для тяжёлых задач с изоляцией, навыки для автоматических воркфлоу с дополнительными файлами."
+                }
+            }
+        ]
+    }
+    </script>
+
     <style>
         :root {
             --bg-primary: #0d0d0f;
@@ -742,7 +870,7 @@
         <!-- Hero -->
         <header class="hero">
             <div class="hero-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                     <path d="M2 17l10 5 10-5"/>
                     <path d="M2 12l10 5 10-5"/>
@@ -751,11 +879,11 @@
             </div>
             <h1>Кастомизация Claude Code</h1>
             <p class="hero-subtitle">CLAUDE.md, слэш-команды, субагенты и навыки — как «научить» Claude Code вашему проекту</p>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">Автор: <a href="https://t.me/buhaistrikalo" style="color: var(--accent-secondary); text-decoration: none;">@buhaistrikalo</a></p>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 0;">Автор: <a href="https://t.me/buhaistrikalo" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none;">@buhaistrikalo</a></p>
             
             <div class="hero-features">
                 <div class="hero-feature">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                         <path d="M14 2v6h6"/>
                         <path d="M16 13H8"/>
@@ -765,7 +893,7 @@
                     4 механизма
                 </div>
                 <div class="hero-feature">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                         <path d="M9 9l6 6"/>
                         <path d="M15 9l-6 6"/>
@@ -773,7 +901,7 @@
                     Примеры кода
                 </div>
                 <div class="hero-feature">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 16v-4"/>
                         <path d="M12 8h.01"/>
@@ -809,7 +937,7 @@
             <p>Claude Code не имеет актуальных данных для каждой библиотеки — он не может «помнить», что написано на сайте документации сегодня. Рассмотрим конкретный сценарий:</p>
             
             <div class="info-box note">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <path d="M12 16v-4"/>
                     <path d="M12 8h.01"/>
@@ -863,7 +991,7 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <path d="M14 2v6h6"/>
                         </svg>
@@ -873,7 +1001,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="4 17 10 11 4 5"/>
                             <line x1="12" y1="19" x2="20" y2="19"/>
                         </svg>
@@ -883,7 +1011,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="3"/>
                             <path d="M12 2v4"/>
                             <path d="M12 18v4"/>
@@ -900,7 +1028,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                     </div>
@@ -919,14 +1047,14 @@
 
             <h3>Где располагается</h3>
             <div class="file-path">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
                 </svg>
                 project-root/CLAUDE.md
             </div>
 
             <div class="info-box tip">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                     <polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
@@ -954,7 +1082,7 @@
             <p>Каждый разговор начинается с того, что Claude знает: «загрузи документацию Reatom перед написанием кода для стейта».</p>
 
             <div class="info-box warning">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
                     <line x1="12" y1="9" x2="12" y2="13"/>
                     <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -968,7 +1096,7 @@
             <div class="pros-cons">
                 <div class="pros">
                     <div class="pros-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Плюсы
@@ -981,7 +1109,7 @@
                 </div>
                 <div class="cons">
                     <div class="cons-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
@@ -1031,7 +1159,7 @@
             <pre data-lang="terminal"><code><span class="keyword">/reatom-help</span> как создать форму с валидацией?</code></pre>
 
             <div class="info-box tip">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                     <polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
@@ -1044,7 +1172,7 @@
             <div class="pros-cons">
                 <div class="pros">
                     <div class="pros-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Плюсы
@@ -1057,7 +1185,7 @@
                 </div>
                 <div class="cons">
                     <div class="cons-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
@@ -1080,7 +1208,7 @@
             <p>Специализированная AI-«персона» с собственным контекстным окном. Claude делегирует ей целые задачи и получает результаты обратно.</p>
 
             <div class="info-box key">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                 </svg>
                 <div class="info-box-content">
@@ -1139,7 +1267,7 @@
 <span class="string">5.</span> Верни <span class="property">сжатый</span> ответ с примерами кода</code></pre>
 
             <div class="info-box note">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <path d="M12 16v-4"/>
                     <path d="M12 8h.01"/>
@@ -1153,7 +1281,7 @@
             <div class="pros-cons">
                 <div class="pros">
                     <div class="pros-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Плюсы
@@ -1167,7 +1295,7 @@
                 </div>
                 <div class="cons">
                     <div class="cons-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
@@ -1235,7 +1363,7 @@
             <div class="pros-cons">
                 <div class="pros">
                     <div class="pros-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Плюсы
@@ -1249,7 +1377,7 @@
                 </div>
                 <div class="cons">
                     <div class="cons-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"/>
                             <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
@@ -1345,7 +1473,7 @@
             <h2><span class="section-number">06</span> Выводы</h2>
 
             <div class="info-box key">
-                <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg aria-hidden="true" class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                 </svg>
                 <div class="info-box-content">
@@ -1358,7 +1486,7 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="3"/>
                             <path d="M12 2v4"/>
                             <path d="M12 18v4"/>
@@ -1369,7 +1497,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="4 17 10 11 4 5"/>
                             <line x1="12" y1="19" x2="20" y2="19"/>
                         </svg>
@@ -1379,7 +1507,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                     </div>
@@ -1388,7 +1516,7 @@
                 </div>
                 <div class="summary-card">
                     <div class="summary-card-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <path d="M14 2v6h6"/>
                         </svg>
@@ -1404,9 +1532,9 @@
             <div class="footer-cta">
                 <h3>Хочешь больше материалов про AI-разработку?</h3>
                 <p>Подпишись на блог — пишу про вайб-кодинг, Claude Code, автоматизацию и создание продуктов с помощью AI. Честно, с цифрами и без воды.</p>
-                <a href="https://t.me/buhaistrikalo" class="cta-button">
+                <a href="https://t.me/buhaistrikalo" target="_blank" rel="noopener noreferrer" class="cta-button">
                     Подписаться в Telegram
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"/>
                         <polyline points="12 5 19 12 12 19"/>
                     </svg>
@@ -1414,12 +1542,12 @@
             </div>
             
             <div class="footer-links">
-                <a href="https://t.me/buhaistrikalo">Telegram-канал</a>
-                <a href="https://github.com/buhaistrikalo">GitHub</a>
+                <a href="https://t.me/buhaistrikalo" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+                <a href="https://github.com/buhaistrikalo" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
             
             <p class="copyright">
-                Кирилл @buhaistrikalo • 2025
+                Кирилл @buhaistrikalo
             </p>
         </footer>
     </div>
