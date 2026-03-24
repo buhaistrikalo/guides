@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>OG Image - Security Checklist</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0c0c0f 0%, #141418 50%, #0c0c0f 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 212, 170, 0.08);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 18px;
+            color: #8a8a95;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge span { color: #00d4aa; }
+
+        h1 {
+            font-size: 68px;
+            font-weight: 800;
+            line-height: 1.1;
+            text-align: center;
+            background: linear-gradient(135deg, #e8e6e3 0%, #8a8a95 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #8a8a95;
+            text-align: center;
+            max-width: 900px;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            display: flex;
+            gap: 24px;
+            margin-top: 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .feature.critical {
+            background: rgba(255, 77, 106, 0.1);
+            border: 1px solid rgba(255, 77, 106, 0.3);
+            color: #ff4d6a;
+        }
+
+        .feature.sections {
+            background: rgba(0, 212, 170, 0.08);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            color: #00d4aa;
+        }
+
+        .feature.ai {
+            background: rgba(255, 217, 61, 0.08);
+            border: 1px solid rgba(255, 217, 61, 0.2);
+            color: #ffd93d;
+        }
+
+        .author {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-size: 20px;
+            color: #71717a;
+        }
+
+        .author span { color: #00d4aa; }
+    </style>
+</head>
+<body>
+    <div class="badge"><span>Интерактивный чеклист</span> • Безопасность</div>
+    <h1>Чеклист безопасности<br>для вайб-кодинга</h1>
+    <p class="subtitle">Проверь перед деплоем. Особенно если код писал AI.</p>
+    <div class="features">
+        <div class="feature sections">5 разделов</div>
+        <div class="feature critical">31 пункт</div>
+        <div class="feature ai">AI-специфика</div>
+    </div>
+    <div class="author">@<span>buhaistrikalo</span></div>
+</body>
+</html>

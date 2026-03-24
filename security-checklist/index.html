@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чеклист безопасности для вайб-кодинга | @buhaistrikalo</title>
+    <meta name="description" content="Интерактивный чеклист безопасности для проектов, написанных с помощью AI. 31 пункт: секреты, доступ, ввод, инфраструктура и AI-специфика. Проверь перед деплоем.">
+    <meta name="keywords" content="вайб-кодинг, безопасность, security checklist, AI-разработка, деплой, XSS, SQL injection, CORS, rate limiting">
+    <meta name="author" content="Кирилл @buhaistrikalo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://buhaistrikalo.github.io/guides/security-checklist/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://buhaistrikalo.github.io/guides/security-checklist/">
+    <meta property="og:title" content="Чеклист безопасности для вайб-кодинга">
+    <meta property="og:description" content="31 пункт проверки перед деплоем. Особенно если код писал AI. Интерактивный чеклист с приоритетами.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Гайды @buhaistrikalo">
+    <meta property="article:author" content="https://t.me/buhaistrikalo">
+    <meta property="article:published_time" content="2026-03-24">
+    <meta property="og:image" content="https://buhaistrikalo.github.io/guides/security-checklist/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Чеклист безопасности для вайб-кодинга — 31 пункт проверки">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://buhaistrikalo.github.io/guides/security-checklist/">
+    <meta name="twitter:title" content="Чеклист безопасности для вайб-кодинга">
+    <meta name="twitter:description" content="31 пункт проверки перед деплоем. Особенно если код писал AI.">
+    <meta name="twitter:image" content="https://buhaistrikalo.github.io/guides/security-checklist/og-image.png">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0c0c0f">
+    <meta name="msapplication-TileColor" content="#0c0c0f">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Чеклист безопасности для вайб-кодинга",
+        "description": "Интерактивный чеклист безопасности для проектов, написанных с помощью AI. 31 пункт проверки перед деплоем.",
+        "author": {
+            "@type": "Person",
+            "name": "Кирилл",
+            "url": "https://t.me/buhaistrikalo"
+        },
+        "datePublished": "2026-03-24",
+        "publisher": {
+            "@type": "Person",
+            "name": "@buhaistrikalo"
+        },
+        "inLanguage": "ru-RU",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://buhaistrikalo.github.io/guides/security-checklist/"
+        },
+        "articleSection": "AI Development",
+        "keywords": ["вайб-кодинг", "безопасность", "security checklist", "AI-разработка", "деплой"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Гайды",
+                "item": "https://buhaistrikalo.github.io/guides/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Чеклист безопасности",
+                "item": "https://buhaistrikalo.github.io/guides/security-checklist/"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0c0c0f;
+            --surface: #141418;
+            --surface-hover: #1a1a20;
+            --border: #2a2a33;
+            --text: #e8e6e3;
+            --text-dim: #8a8a95;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.08);
+            --accent-border: rgba(0, 212, 170, 0.2);
+            --accent-glow: rgba(0, 212, 170, 0.3);
+            --red: #ff4d6a;
+            --red-dim: rgba(255, 77, 106, 0.08);
+            --orange: #ff9f43;
+            --orange-dim: rgba(255, 159, 67, 0.08);
+            --yellow: #ffd93d;
+            --yellow-dim: rgba(255, 217, 61, 0.08);
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            color: var(--accent);
+        }
+
+        .header p {
+            color: var(--text-dim);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .progress-bar {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            min-width: 42px;
+            text-align: right;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+        }
+
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+        }
+
+        .section-count {
+            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+            user-select: none;
+        }
+
+        .item:hover {
+            background: var(--surface);
+            border-color: var(--border);
+        }
+
+        .item.checked {
+            opacity: 0.45;
+        }
+
+        .item.checked .item-text {
+            text-decoration: line-through;
+            text-decoration-color: var(--text-dim);
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            margin-top: 1px;
+        }
+
+        .item.checked .checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .checkbox svg {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s ease;
+        }
+
+        .item.checked .checkbox svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .item-text {
+            font-size: 14.5px;
+            line-height: 1.5;
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+
+        .severity-dot {
+            width: 6px;
+            height: 6px;
+            min-width: 6px;
+            border-radius: 50%;
+            margin-top: 8px;
+            margin-left: auto;
+        }
+
+        .severity-critical { background: var(--red); box-shadow: 0 0 6px var(--red-dim); }
+        .severity-high { background: var(--orange); }
+        .severity-medium { background: var(--yellow); }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .footer-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .reset-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-dim);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .reset-btn:hover {
+            color: var(--red);
+            border-color: var(--red);
+            background: var(--red-dim);
+        }
+
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .legend-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* CTA block */
+        .cta-block {
+            margin-top: 32px;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .cta-block p {
+            color: var(--text-dim);
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="../" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Все гайды
+    </a>
+
+    <div class="header">
+        <h1>Чеклист безопасности<br>для <span>вайб-кодинга</span></h1>
+        <p>Проверь перед деплоем. Особенно если код писал AI.</p>
+        <div class="progress-bar">
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text" id="progressText">0/31</div>
+        </div>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--red);"></div> критично</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div> высокий</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--yellow);"></div> средний</div>
+        </div>
+    </div>
+
+    <div id="app"></div>
+
+    <div class="cta-block">
+        <p>Больше про вайб-кодинг, Claude Code и AI-разработку — в канале</p>
+        <a href="https://t.me/buhaistrikalo" target="_blank" rel="noopener noreferrer" class="cta-btn">
+            Подписаться в Telegram
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+        </a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-text">адаптация: <a href="https://t.me/buhaistrikalo">@buhaistrikalo</a> · оригинал: @DeFiMinty</div>
+        <button class="reset-btn" id="resetBtn">сбросить</button>
+    </div>
+</div>
+
+<script>
+const sections = [
+  {
+    num: "01",
+    title: "Секреты и конфиг",
+    items: [
+      { text: "Захардкоженные секреты, токены или API-ключи в коде", severity: "critical" },
+      { text: "Секреты утекают через логи, ошибки или ответы API", severity: "critical" },
+      { text: ".env файлы закоммичены в git", severity: "critical" },
+      { text: "API-ключи торчат на клиенте, хотя должны быть только на сервере", severity: "critical" },
+      { text: "CORS настроен слишком широко — разрешено всё подряд", severity: "high" },
+      { text: "Зависимости с известными уязвимостями", severity: "high" },
+      { text: "Дефолтные пароли или примеры конфигов в проде", severity: "critical" },
+      { text: "Debug-режим или dev-тулзы включены в продакшене", severity: "high" },
+    ]
+  },
+  {
+    num: "02",
+    title: "Доступ и API",
+    items: [
+      { text: "Страницы или роуты доступны без авторизации", severity: "critical" },
+      { text: "Можно получить чужие данные, подменив ID в URL", severity: "critical" },
+      { text: "Токены хранятся на клиенте в открытом виде", severity: "critical" },
+      { text: "Логин или сброс пароля показывает, существует ли аккаунт", severity: "medium" },
+      { text: "Нет rate limiting на эндпоинтах", severity: "high" },
+      { text: "Ошибки возвращают внутренние детали (стектрейсы, SQL)", severity: "high" },
+      { text: "API отдаёт больше данных, чем нужно клиенту", severity: "high" },
+      { text: "Удаление, смена email и другие критичные действия — без подтверждения", severity: "high" },
+      { text: "Админка защищена только скрытым URL", severity: "critical" },
+    ]
+  },
+  {
+    num: "03",
+    title: "Пользовательский ввод",
+    items: [
+      { text: "Пользовательский ввод попадает в SQL без санитизации", severity: "critical" },
+      { text: "Пользовательский текст может выполнить код в браузерах других юзеров (XSS)", severity: "critical" },
+      { text: "Загрузка файлов без проверки типа и размера", severity: "high" },
+      { text: "Логику оплаты или биллинга можно обойти на клиенте", severity: "critical" },
+    ]
+  },
+  {
+    num: "04",
+    title: "Инфраструктура",
+    items: [
+      { text: "Нет HTTPS — трафик летает в открытом виде", severity: "critical" },
+      { text: "Нет бэкапов базы данных", severity: "high" },
+      { text: "SSH доступен по паролю, а не по ключу", severity: "high" },
+      { text: "Docker-контейнеры бегают от root", severity: "medium" },
+      { text: "Порты БД или Redis торчат наружу", severity: "critical" },
+      { text: "Нет мониторинга — узнаёшь о проблемах от юзеров", severity: "medium" },
+    ]
+  },
+  {
+    num: "05",
+    title: "AI-специфика",
+    items: [
+      { text: "AI нагенерил TODO/FIXME — и ты их не проверил", severity: "medium" },
+      { text: "Код из чата вставлен без ревью — «работает и ладно»", severity: "high" },
+      { text: "AI добавил пакеты, которые ты не проверил (supply chain)", severity: "high" },
+      { text: "Промпты с пользовательским вводом без экранирования (prompt injection)", severity: "critical" },
+    ]
+  },
+];
+
+const STORAGE_KEY = 'vibe-security-checklist';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function render() {
+  const state = loadState();
+  const app = document.getElementById('app');
+  let totalItems = 0;
+  let checkedItems = 0;
+  let html = '';
+
+  sections.forEach((section, si) => {
+    const sectionChecked = section.items.filter((_, ii) => state[`${si}-${ii}`]).length;
+    html += `<div class="section">
+      <div class="section-header">
+        <span class="section-num">${section.num}</span>
+        <span class="section-title">${section.title}</span>
+        <span class="section-count">${sectionChecked}/${section.items.length}</span>
+      </div>
+      <div class="checklist">`;
+
+    section.items.forEach((item, ii) => {
+      const key = `${si}-${ii}`;
+      const checked = state[key];
+      if (checked) checkedItems++;
+      totalItems++;
+      html += `<div class="item ${checked ? 'checked' : ''}" data-key="${key}">
+        <div class="checkbox">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6.5L4.5 9L10 3" stroke="#0c0c0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="item-text">${item.text}</span>
+        <div class="severity-dot severity-${item.severity}"></div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  app.innerHTML = html;
+
+  const pct = totalItems ? Math.round((checkedItems / totalItems) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${checkedItems}/${totalItems}`;
+
+  document.querySelectorAll('.item').forEach(el => {
+    el.addEventListener('click', () => {
+      const key = el.dataset.key;
+      const s = loadState();
+      s[key] = !s[key];
+      saveState(s);
+      render();
+    });
+  });
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  localStorage.removeItem(STORAGE_KEY);
+  render();
+});
+
+render();
+</script>
+
+</body>
+</html>
