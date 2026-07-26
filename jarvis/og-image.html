@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=1200, initial-scale=1.0">
     <title>OG Image — Собери своего Джарвиса с Claude</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         html,
         body {
@@ -20,98 +18,156 @@
         body {
             position: relative;
             display: grid;
-            grid-template-columns: 1fr 312px;
-            gap: 74px;
-            align-items: center;
-            padding: 66px 72px;
+            grid-template-columns: 760px 1fr;
+            padding: 28px;
             background:
-                radial-gradient(circle at 82% 30%, rgba(99, 230, 211, 0.16), transparent 270px),
-                #0b0c0f;
-            color: #f2f1ed;
+                radial-gradient(circle at 1px 1px, rgba(80, 65, 42, 0.11) 1px, transparent 1.2px) 0 0 / 14px 14px,
+                #f4efdf;
+            color: #24211b;
             font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
-        body::after {
+        body::before {
             content: "";
             position: absolute;
             inset: 28px;
-            border: 1px solid #292d35;
+            border: 1px solid #b8aa8d;
             pointer-events: none;
         }
 
+        main {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 66px 70px;
+            border-right: 1px solid #b8aa8d;
+        }
+
+        main::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 28px;
+            bottom: 0;
+            width: 70px;
+            border-inline: 1px solid rgba(117, 109, 92, 0.45);
+            background: repeating-linear-gradient(90deg, rgba(112, 94, 62, 0.16) 0 6px, rgba(255,255,255,0.25) 6px 10px, transparent 10px 15px);
+        }
+
         .eyebrow {
-            margin: 0 0 28px;
-            color: #63e6d3;
+            width: max-content;
+            margin: 0 0 32px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a54f35;
+            color: #813a27;
             font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 17px;
-            letter-spacing: 0.12em;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
         }
 
         h1 {
-            max-width: 720px;
+            max-width: 620px;
             margin: 0;
             font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
-            font-size: 92px;
+            font-size: 90px;
             font-weight: 400;
             letter-spacing: -0.055em;
-            line-height: 0.92;
+            line-height: 0.84;
         }
 
         h1 span {
-            color: #63e6d3;
+            display: block;
+            margin-top: 14px;
+            color: #813a27;
+            font-style: italic;
         }
 
         .subtitle {
-            max-width: 720px;
-            margin: 30px 0 0;
-            color: #b1b2b8;
-            font-size: 23px;
+            max-width: 555px;
+            margin: 36px 0 0;
+            padding-left: 22px;
+            border-left: 3px solid #c45e3c;
+            color: #5e594e;
+            font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+            font-size: 24px;
             line-height: 1.4;
         }
 
-        .panel {
-            border-top: 3px solid #63e6d3;
-            padding-top: 26px;
+        aside {
+            position: relative;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            background: rgba(232, 223, 204, 0.72);
         }
 
-        .panel strong {
+        .promise {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 64px 54px 38px;
+        }
+
+        .promise strong {
             display: block;
-            margin-bottom: 18px;
+            max-width: 300px;
+            margin-bottom: 26px;
             font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
-            font-size: 34px;
+            font-size: 40px;
             font-weight: 400;
-            line-height: 1.13;
+            letter-spacing: -0.035em;
+            line-height: 1.03;
         }
 
-        .panel p {
+        .promise p {
+            max-width: 280px;
             margin: 0;
-            color: #777b85;
+            color: #686155;
+            font-size: 17px;
+            line-height: 1.55;
+        }
+
+        .meta {
+            min-height: 118px;
+            padding: 27px 54px;
+            border-top: 1px solid #b8aa8d;
+            background: #24211b;
+            color: #e8dfcc;
             font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 16px;
-            line-height: 1.7;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .meta b {
+            color: #d2967f;
+            font-weight: 700;
         }
 
         .author {
             position: absolute;
-            right: 72px;
-            bottom: 54px;
-            color: #f2bd6b;
+            right: 54px;
+            bottom: 28px;
+            color: #e8dfcc;
             font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 17px;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
     <main>
-        <p class="eyebrow">Полный гайд · Claude Code</p>
+        <p class="eyebrow">Claude Code · полный гайд</p>
         <h1>Собери своего <span>Джарвиса</span></h1>
         <p class="subtitle">Дашборд, голос, браузер, почта и автоматизация</p>
     </main>
-    <aside class="panel">
-        <strong>Не скачивай.<br>Собери сам.</strong>
-        <p>10 частей<br>готовые команды<br>честная схема</p>
+    <aside>
+        <div class="promise">
+            <strong>Не скачивай.<br>Собери сам.</strong>
+            <p>Честная схема без магии из роликов: одно подключение, один тест, одна проверка.</p>
+        </div>
+        <div class="meta"><b>10 частей</b> · готовые команды<br>Claude Code · MCP · routines</div>
+        <div class="author">@buhaistrikalo</div>
     </aside>
-    <div class="author">@buhaistrikalo</div>
 </body>
 </html>
