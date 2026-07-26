@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Собери своего Джарвиса с Claude: полный набор инструментов | @buhaistrikalo</title>
+    <meta name="description" content="Практический гайд по сборке собственного Джарвиса на базе Claude Code: дашборд, голос, браузер, почта, контент, специалисты и автоматические сценарии.">
+    <meta name="keywords" content="Джарвис, Claude Code, Claude, ИИ-ассистент, AI-агент, личный помощник, автоматизация, MCP, голосовой ассистент">
+    <meta name="author" content="@buhaistrikalo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://buhaistrikalo.github.io/guides/jarvis/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://buhaistrikalo.github.io/guides/jarvis/">
+    <meta property="og:title" content="Собери своего Джарвиса с Claude">
+    <meta property="og:description" content="Полный набор инструментов: Claude Code, дашборд, голос, браузер, почта, контент, специалисты и расписание.">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Гайды @buhaistrikalo">
+    <meta property="article:author" content="https://t.me/buhaistrikalo">
+    <meta property="article:published_time" content="2026-07-26">
+    <meta property="article:modified_time" content="2026-07-26">
+    <meta property="og:image" content="https://buhaistrikalo.github.io/guides/jarvis/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Собери своего Джарвиса: практический гайд по личному ИИ-менеджеру">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://buhaistrikalo.github.io/guides/jarvis/">
+    <meta name="twitter:title" content="Собери своего Джарвиса с Claude">
+    <meta name="twitter:description" content="Пошаговый гайд по дашборду, голосу, подключениям, специалистам и автоматическим сценариям Claude.">
+    <meta name="twitter:image" content="https://buhaistrikalo.github.io/guides/jarvis/og-image.png">
+
+    <meta name="theme-color" content="#e8dfcc">
+    <meta name="msapplication-TileColor" content="#e8dfcc">
+    <link rel="preconnect" href="https://t.me">
+    <link rel="dns-prefetch" href="https://t.me">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◉</text></svg>">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Собери своего Джарвиса с Claude: полный набор инструментов",
+        "description": "Практический гайд по сборке собственного Джарвиса на базе Claude Code: дашборд, голос, браузер, почта, контент, специалисты и автоматические сценарии.",
+        "image": "https://buhaistrikalo.github.io/guides/jarvis/og-image.png",
+        "author": {
+            "@type": "Person",
+            "name": "@buhaistrikalo",
+            "url": "https://t.me/buhaistrikalo"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "@buhaistrikalo",
+            "url": "https://t.me/buhaistrikalo"
+        },
+        "datePublished": "2026-07-26",
+        "dateModified": "2026-07-26",
+        "inLanguage": "ru-RU",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://buhaistrikalo.github.io/guides/jarvis/"
+        },
+        "articleSection": "AI Development",
+        "keywords": ["Джарвис", "Claude Code", "Claude", "ИИ-ассистент", "MCP", "автоматизация"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Гайды",
+                "item": "https://buhaistrikalo.github.io/guides/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Собери своего Джарвиса",
+                "item": "https://buhaistrikalo.github.io/guides/jarvis/"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            color-scheme: light;
+            --limestone: #e8dfcc;
+            --ivory: #f4efdf;
+            --paper: #faf6e9;
+            --ink: #26241f;
+            --ink-soft: #514c40;
+            --ink-muted: #756d5c;
+            --stone: #b8aa8d;
+            --terracotta: #a54f35;
+            --terracotta-dark: #723624;
+            --bronze: #557064;
+            --olive: #676b45;
+            --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+            --sans: Inter, "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+            --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 18% 14%, rgb(112 93 59 / 4%) 0 1px, transparent 1.5px) 0 0 / 18px 21px,
+                radial-gradient(circle at 74% 62%, rgb(255 255 255 / 20%) 0 1px, transparent 1.4px) 0 0 / 23px 19px,
+                linear-gradient(90deg, rgb(116 92 54 / 2%), transparent 18%, rgb(255 255 255 / 7%) 68%, transparent),
+                var(--ivory);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.76;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        :focus-visible { outline: 3px solid var(--terracotta); outline-offset: 4px; }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 100;
+            transform: translateY(-160%);
+            padding: 10px 14px;
+            background: var(--ink);
+            color: var(--paper);
+            font: 700 12px/1.2 var(--mono);
+            text-decoration: none;
+        }
+        .skip-link:focus { transform: translateY(0); }
+
+        .site-header,
+        .hero,
+        .page-shell,
+        .site-footer {
+            width: min(1360px, calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        .site-header {
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid var(--stone);
+        }
+        .brand, .back-link { text-decoration: none; }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font: 700 11px/1.2 var(--mono);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+        .brand-mark {
+            width: 21px;
+            height: 21px;
+            border: 1px solid var(--terracotta);
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 4px var(--ivory), inset 0 0 0 5px var(--terracotta);
+        }
+        .back-link {
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--terracotta);
+            color: var(--ink-soft);
+            font: 650 13px/1.2 var(--sans);
+        }
+        .back-link:hover { color: var(--terracotta-dark); }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.58fr) minmax(340px, .72fr);
+            min-height: min(840px, calc(100vh - 84px));
+            border-bottom: 1px solid var(--stone);
+        }
+        .hero-copy {
+            position: relative;
+            isolation: isolate;
+            min-width: 0;
+            overflow: hidden;
+            padding: clamp(76px, 8vw, 126px) clamp(48px, 7vw, 96px) clamp(66px, 8vw, 112px) clamp(28px, 5vw, 76px);
+            border-inline: 1px solid var(--stone);
+        }
+        .hero-copy::before,
+        .hero-copy::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .hero-copy::before {
+            inset: 26px;
+            border: 1px solid rgb(117 109 92 / 45%);
+        }
+        .hero-copy::after {
+            top: 0;
+            right: 28px;
+            bottom: 0;
+            width: clamp(64px, 7vw, 94px);
+            border-inline: 1px solid rgb(115 99 71 / 36%);
+            background:
+                linear-gradient(var(--stone), var(--stone)) center 18px / calc(100% + 20px) 2px no-repeat,
+                linear-gradient(var(--stone), var(--stone)) center calc(100% - 18px) / calc(100% + 20px) 2px no-repeat,
+                repeating-linear-gradient(90deg, rgb(112 94 62 / 20%) 0 6px, rgb(255 255 255 / 22%) 6px 11px, rgb(112 94 62 / 11%) 11px 16px);
+            box-shadow: inset 12px 0 18px rgb(68 53 29 / 6%), inset -12px 0 18px rgb(68 53 29 / 7%);
+        }
+        .eyebrow,
+        .chapter-kicker,
+        .mode-label,
+        .toc-title,
+        .prompt-label,
+        .system-label {
+            font: 700 10px/1.35 var(--mono);
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+        .eyebrow {
+            display: inline-block;
+            margin: 0 0 44px;
+            padding-bottom: 9px;
+            border-bottom: 1px solid var(--terracotta);
+            color: var(--terracotta-dark);
+        }
+        h1 {
+            position: relative;
+            max-width: 650px;
+            margin: 0;
+            font-family: var(--display);
+            font-size: clamp(4.6rem, 8.3vw, 8.4rem);
+            font-weight: 500;
+            letter-spacing: -.065em;
+            line-height: .76;
+        }
+        h1 em {
+            display: block;
+            width: max-content;
+            margin-top: .22em;
+            color: var(--terracotta-dark);
+            font-style: italic;
+            font-weight: 500;
+            letter-spacing: -.04em;
+        }
+        .hero-lead {
+            position: relative;
+            max-width: 480px;
+            margin: 50px 0 0;
+            padding-left: 24px;
+            border-left: 2px solid var(--terracotta);
+            color: var(--ink-soft);
+            font-family: var(--display);
+            font-size: clamp(1.13rem, 1.8vw, 1.46rem);
+            line-height: 1.47;
+        }
+        .hero-promise {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-width: 0;
+            background: var(--limestone);
+            border-right: 1px solid var(--stone);
+        }
+        .hero-promise-main {
+            padding: clamp(38px, 4vw, 58px);
+            border-bottom: 1px solid var(--stone);
+        }
+        .hero-promise strong {
+            display: block;
+            margin-bottom: 20px;
+            font-family: var(--display);
+            font-size: clamp(1.7rem, 2.5vw, 2.45rem);
+            font-weight: 500;
+            letter-spacing: -.025em;
+            line-height: 1.08;
+        }
+        .hero-promise p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.65; }
+        .system-map { display: grid; grid-template-columns: 1fr 1fr; }
+        .system-node {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 132px;
+            padding: 24px;
+            border-bottom: 1px solid var(--stone);
+        }
+        .system-node:nth-child(odd) { border-right: 1px solid var(--stone); }
+        .system-node:nth-last-child(-n+2) { border-bottom: 0; }
+        .system-node b { font-family: var(--display); font-size: 1.2rem; font-weight: 600; line-height: 1.05; }
+        .system-node span:last-child { color: var(--ink-muted); font: 9px/1.4 var(--mono); }
+        .system-label { color: var(--terracotta-dark); font-size: 9px; }
+        .hero-action {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 28px clamp(26px, 4vw, 48px);
+            background: var(--ink);
+            color: var(--paper);
+        }
+        .hero-action > a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 11px 16px;
+            border: 1px solid var(--stone);
+            color: var(--paper);
+            font-weight: 700;
+            line-height: 1.1;
+            text-decoration: none;
+        }
+        .hero-action > a:hover { background: var(--terracotta); border-color: var(--terracotta); }
+        .hero-meta { color: #d2c8b3; font: 10px/1.75 var(--mono); }
+        .hero-meta a { color: var(--paper); text-underline-offset: 3px; }
+
+        .page-shell {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 760px);
+            gap: clamp(64px, 9vw, 144px);
+            justify-content: center;
+            align-items: start;
+            padding-block: 112px 156px;
+        }
+        .toc {
+            position: sticky;
+            top: 24px;
+            max-height: calc(100vh - 48px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            border-block: 3px double var(--stone);
+        }
+        .toc-title { margin: 0; padding: 16px 5px; border-bottom: 1px solid var(--stone); color: var(--terracotta-dark); }
+        .toc ol { list-style: none; margin: 0; padding: 0; }
+        .toc li { margin: 0; border-bottom: 1px solid rgb(184 170 141 / 60%); }
+        .toc li:last-child { border-bottom: 0; }
+        .toc a {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 8px;
+            padding: 12px 5px;
+            color: var(--ink-muted);
+            font-size: 11px;
+            font-weight: 650;
+            line-height: 1.35;
+            text-decoration: none;
+        }
+        .toc a:hover, .toc a[aria-current="location"] {
+            color: var(--ink);
+            background: linear-gradient(90deg, rgb(165 79 53 / 13%), transparent);
+        }
+        .toc-num { color: var(--terracotta-dark); font-family: var(--mono); }
+
+        article { min-width: 0; }
+        .lede {
+            margin: 0 0 108px;
+            padding: 8px 0 40px;
+            border-bottom: 3px double var(--stone);
+            color: var(--ink);
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 3vw, 2.42rem);
+            letter-spacing: -.022em;
+            line-height: 1.3;
+        }
+        .lede::first-letter {
+            float: left;
+            margin: .06em .1em 0 0;
+            color: var(--terracotta-dark);
+            font-size: 3.4em;
+            line-height: .72;
+        }
+        .chapter { padding: 104px 0 40px; border-top: 1px solid var(--stone); }
+        .chapter:first-of-type { padding-top: 0; border-top: 0; }
+        .chapter-kicker {
+            width: max-content;
+            margin: 0 0 22px;
+            padding: 0 0 9px;
+            border-bottom: 1px solid var(--terracotta);
+            color: var(--terracotta-dark);
+        }
+        h2 {
+            max-width: 700px;
+            margin: 0 0 40px;
+            font-family: var(--display);
+            font-size: clamp(2.9rem, 5.8vw, 5.1rem);
+            font-weight: 500;
+            letter-spacing: -.052em;
+            line-height: .96;
+        }
+        h3 {
+            margin: 54px 0 17px;
+            font-family: var(--display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        p { margin: 0 0 22px; color: var(--ink-soft); }
+        strong { color: var(--ink); }
+        ul, ol { color: var(--ink-soft); padding-left: 1.35em; }
+        li + li { margin-top: 10px; }
+
+        .mode-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 44px 0;
+            border-block: 3px double var(--stone);
+        }
+        .mode { min-width: 0; padding: 30px 28px; }
+        .mode + .mode { border-left: 1px solid var(--stone); }
+        .mode.decide { box-shadow: inset 4px 0 0 var(--terracotta); }
+        .mode.learn { box-shadow: inset 4px 0 0 var(--bronze); }
+        .mode-label { display: block; margin-bottom: 28px; color: var(--terracotta-dark); }
+        .mode.learn .mode-label { color: #3e5b50; }
+        .mode p { margin: 0; font-size: 14px; }
+
+        .formula {
+            margin: 42px 0;
+            padding: 28px 32px;
+            border: 1px solid var(--stone);
+            border-left: 5px solid var(--bronze);
+            background: rgb(232 223 204 / 62%);
+            color: var(--ink);
+            font: 650 clamp(.78rem, 1.7vw, .9rem)/1.8 var(--mono);
+            overflow-wrap: anywhere;
+        }
+        .layers {
+            margin: 44px 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: layer;
+            border-top: 3px double var(--stone);
+        }
+        .layers li {
+            counter-increment: layer;
+            display: grid;
+            grid-template-columns: 52px 150px 1fr;
+            gap: 16px;
+            align-items: baseline;
+            margin: 0;
+            padding: 23px 0;
+            border-bottom: 1px solid var(--stone);
+        }
+        .layers li::before {
+            content: "0" counter(layer);
+            color: var(--terracotta-dark);
+            font: 800 10px/1 var(--mono);
+        }
+        .layers strong { font-family: var(--display); font-size: 1.08rem; font-weight: 600; }
+        .layers span { color: var(--ink-muted); font-size: 14px; }
+
+        .callout {
+            position: relative;
+            margin: 42px 0;
+            padding: 30px 32px 30px 78px;
+            border-block: 1px solid var(--stone);
+            background: rgb(165 79 53 / 7%);
+        }
+        .callout::before {
+            content: "I";
+            position: absolute;
+            top: 25px;
+            left: 23px;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--terracotta);
+            border-radius: 50%;
+            color: var(--terracotta-dark);
+            font: 600 1rem/1 var(--display);
+        }
+        .callout strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--terracotta-dark);
+            font: 700 10px/1.3 var(--mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .callout p { margin: 0; font-size: 14px; }
+        .callout.warning { background: rgb(103 107 69 / 8%); }
+        .callout.warning::before { content: "II"; border-color: var(--olive); color: var(--olive); font-size: .78rem; }
+        .callout.warning strong { color: #4d5131; }
+
+        .prompt {
+            position: relative;
+            margin: 36px 0 46px;
+            overflow: hidden;
+            border: 1px solid var(--stone);
+            background: rgb(250 246 233 / 74%);
+            box-shadow: 6px 6px 0 rgb(85 112 100 / 17%);
+        }
+        .prompt-head {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 9px 11px 9px 22px;
+            border-bottom: 1px solid var(--stone);
+            background: rgb(232 223 204 / 70%);
+        }
+        .prompt-label { color: var(--terracotta-dark); }
+        .copy-button {
+            min-height: 36px;
+            padding: 7px 12px;
+            border: 1px solid var(--stone);
+            border-radius: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font: 800 9px/1 var(--mono);
+            letter-spacing: .04em;
+            cursor: pointer;
+        }
+        .copy-button:hover { background: var(--bronze); border-color: var(--bronze); color: var(--paper); }
+        pre {
+            margin: 0;
+            padding: 28px;
+            overflow-x: auto;
+            color: var(--ink);
+            font: 13px/1.75 var(--mono);
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            tab-size: 2;
+        }
+        code { font-family: var(--mono); }
+        :not(pre) > code {
+            padding: .13em .38em;
+            border-bottom: 1px solid var(--terracotta);
+            background: rgb(165 79 53 / 8%);
+            color: var(--ink);
+            font-size: .88em;
+            overflow-wrap: anywhere;
+        }
+
+        .table-wrap {
+            margin: 42px 0;
+            overflow-x: auto;
+            border-block: 3px double var(--stone);
+            background: rgb(250 246 233 / 48%);
+        }
+        table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--stone); }
+        th {
+            color: var(--terracotta-dark);
+            font: 700 9px/1.3 var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        th + th, td + td { border-left: 1px solid rgb(184 170 141 / 55%); }
+        td { color: var(--ink-soft); }
+        tbody tr:nth-child(even) { background: rgb(232 223 204 / 38%); }
+        tr:last-child td { border-bottom: 0; }
+
+        .plate-break {
+            position: relative;
+            width: min(960px, calc(100vw - 64px));
+            margin: 74px 0 8px 50%;
+            transform: translateX(-50%);
+            border-block: 1px solid var(--stone);
+            background: var(--limestone);
+        }
+        .plate-break::before,
+        .plate-break::after {
+            content: "";
+            position: absolute;
+            top: -24px;
+            bottom: -24px;
+            width: 56px;
+            border-inline: 1px solid rgb(117 109 92 / 44%);
+            background: repeating-linear-gradient(90deg, rgb(112 94 62 / 18%) 0 5px, rgb(255 255 255 / 20%) 5px 9px, transparent 9px 13px);
+        }
+        .plate-break::before { left: -30px; }
+        .plate-break::after { right: -30px; }
+        .plate-break img {
+            display: block;
+            width: 100%;
+            height: min(58vw, 520px);
+            object-fit: cover;
+            object-position: 50% 34%;
+            filter: sepia(.18) saturate(.72) contrast(1.06);
+        }
+        .plate-break figcaption {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 15px 78px;
+            color: var(--ink-muted);
+            font: 9px/1.5 var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .sequence { margin: 36px 0; padding-left: 0; list-style: none; counter-reset: step; }
+        .sequence li {
+            counter-increment: step;
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 18px;
+            align-items: center;
+            margin: 0;
+            padding: 17px 0;
+            border-bottom: 1px solid var(--stone);
+        }
+        .sequence li::before {
+            content: counter(step, decimal-leading-zero);
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid var(--terracotta);
+            border-radius: 50%;
+            color: var(--terracotta-dark);
+            font: 800 10px/1 var(--mono);
+        }
+        .quick-start {
+            position: relative;
+            margin-top: 110px;
+            padding: clamp(38px, 6vw, 68px);
+            border: 1px solid var(--stone);
+            background: rgb(232 223 204 / 66%);
+        }
+        .quick-start::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgb(184 170 141 / 65%);
+            pointer-events: none;
+        }
+        .quick-start > * { position: relative; }
+        .quick-start h2 { max-width: 600px; }
+        .quick-start .sequence { margin-bottom: 0; }
+
+        .cta {
+            position: relative;
+            margin-top: 112px;
+            padding: clamp(48px, 8vw, 88px);
+            overflow: hidden;
+            background: var(--ink);
+            border-block: 6px double var(--stone);
+            color: var(--paper);
+        }
+        .cta::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 6%;
+            bottom: 0;
+            width: clamp(76px, 14vw, 130px);
+            border-inline: 1px solid rgb(232 223 204 / 18%);
+            background: repeating-linear-gradient(90deg, transparent 0 9px, rgb(232 223 204 / 8%) 9px 16px, transparent 16px 24px);
+        }
+        .cta .chapter-kicker { position: relative; z-index: 1; color: #d2967f; border-color: #d2967f; }
+        .cta h2 { position: relative; z-index: 1; max-width: 650px; color: var(--paper); }
+        .cta p { position: relative; z-index: 1; max-width: 510px; margin: 0 0 32px; color: #d4ccbc; }
+        .cta-button {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 12px 22px;
+            border: 1px solid var(--stone);
+            color: var(--paper);
+            text-decoration: none;
+            font-weight: 750;
+        }
+        .cta-button:hover { background: var(--terracotta); border-color: var(--terracotta); }
+
+        .site-footer {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px 48px;
+            padding: 38px 0 52px;
+            border-top: 3px double var(--stone);
+            color: var(--ink-muted);
+            font: 10px/1.7 var(--mono);
+        }
+        .site-footer a { color: var(--ink); text-underline-offset: 3px; }
+        .image-credits { grid-column: 1 / -1; font-size: 9px; }
+
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-copy { padding-inline: clamp(28px, 5vw, 76px); }
+            .hero-promise {
+                grid-template-columns: .85fr 1.15fr;
+                grid-template-rows: auto auto;
+                border-left: 1px solid var(--stone);
+            }
+            .hero-promise-main { border-right: 1px solid var(--stone); border-bottom: 0; }
+            .hero-action { grid-column: 1 / -1; grid-template-columns: 1fr auto; }
+        }
+
+        @media (max-width: 900px) {
+            .page-shell { grid-template-columns: 1fr; max-width: 800px; }
+            .toc { position: static; max-height: none; }
+            .toc ol { display: grid; grid-template-columns: 1fr 1fr; }
+            .toc li:nth-child(odd) { border-right: 1px solid var(--stone); }
+            .toc a { padding-inline: 10px; }
+        }
+
+        @media (max-width: 680px) {
+            body { font-size: 16px; }
+            .site-header, .hero, .page-shell, .site-footer { width: min(100% - 28px, 1360px); }
+            .site-header { min-height: 64px; }
+            .brand { font-size: 9px; }
+            .back-link { font-size: 12px; }
+            .hero-copy {
+                min-height: 620px;
+                padding: 46px 22px;
+            }
+            .hero-copy::before { inset: 12px; }
+            .hero-copy::after { right: 12px; width: 52px; }
+            .eyebrow { margin-bottom: 32px; font-size: 9px; }
+            h1 { font-size: clamp(4rem, 19vw, 6rem); line-height: .8; }
+            .hero-lead { margin-top: 34px; font-size: 1.08rem; }
+            .hero-promise { display: block; }
+            .hero-promise-main { border-right: 0; border-bottom: 1px solid var(--stone); }
+            .hero-action { display: grid; grid-template-columns: 1fr; }
+            .hero-action > a { order: -1; }
+            .page-shell { gap: 58px; padding-block: 64px 100px; }
+            .toc ol { grid-template-columns: 1fr; }
+            .toc li:nth-child(odd) { border-right: 0; }
+            .lede { margin-bottom: 78px; }
+            .chapter { padding-top: 78px; }
+            h2 { font-size: clamp(2.65rem, 13vw, 4rem); }
+            .mode-pair { grid-template-columns: 1fr; }
+            .mode + .mode { border-top: 1px solid var(--stone); border-left: 0; }
+            .layers li { grid-template-columns: 38px 1fr; }
+            .layers li span { grid-column: 2; }
+            .callout { padding: 72px 22px 24px; }
+            .callout::before { top: 22px; left: 22px; }
+            .prompt { margin-inline: -2px; box-shadow: 4px 4px 0 rgb(85 112 100 / 17%); }
+            .prompt-head { padding-left: 14px; }
+            pre { padding: 21px 15px; font-size: 12px; }
+            .plate-break { width: calc(100vw - 28px); margin-block: 54px 0; }
+            .plate-break::before, .plate-break::after { display: none; }
+            .plate-break img { height: 114vw; max-height: 560px; }
+            .plate-break figcaption { display: block; padding: 12px 14px; }
+            .plate-break figcaption span { display: block; }
+            .quick-start, .cta { margin-inline: -2px; }
+            .cta::after { opacity: .6; }
+            .site-footer { grid-template-columns: 1fr; }
+            .image-credits { grid-column: auto; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#content">Перейти к содержанию</a>
+
+    <header class="site-header">
+        <a class="brand" href="../" aria-label="Все гайды @buhaistrikalo">
+            <span class="brand-mark" aria-hidden="true"></span>
+            Гайды / Джарвис
+        </a>
+        <a class="back-link" href="../">← Все гайды</a>
+    </header>
+
+    <div class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Claude Code · полный набор инструментов</p>
+            <h1>Собери своего <em>Джарвиса</em></h1>
+            <p class="hero-lead">Ты не скачиваешь готового Джарвиса. Ты собираешь его сам: Claude Code становится мозгом, а нужные приложения подключаются по одному.</p>
+        </div>
+        <aside class="hero-promise" aria-label="Что даст этот гайд">
+            <div class="hero-promise-main">
+                <strong>Дашборд, голос, браузер, почта, контент, специалисты и расписание.</strong>
+                <p>Ниже честная схема без магии из роликов. Начни с одного подключения, проверь его и только потом добавляй следующее.</p>
+            </div>
+            <div class="system-map" aria-hidden="true">
+                <div class="system-node"><span class="system-label">01 · Мозг</span><b>Claude Code</b><span>файлы · команды · диалог</span></div>
+                <div class="system-node"><span class="system-label">02 · Связи</span><b>MCP</b><span>почта · данные · сервисы</span></div>
+                <div class="system-node"><span class="system-label">03 · Лицо</span><b>Дашборд</b><span>статусы · цифры · бриф</span></div>
+                <div class="system-node"><span class="system-label">04 · Контроль</span><b>Ты решаешь</b><span>публикация · деньги · отправка</span></div>
+            </div>
+            <div class="hero-action">
+                <div class="hero-meta">
+                    10 частей · готовые команды и промпты<br>
+                    Адаптация: <a href="https://t.me/+ahJQVKA1N9xlNmYy" target="_blank" rel="noopener noreferrer">@buhaistrikalo</a>
+                </div>
+                <a href="#before">Начать сборку →</a>
+            </div>
+        </aside>
+    </div>
+
+    <main class="page-shell" id="content">
+        <nav class="toc" aria-label="Содержание">
+            <p class="toc-title">Содержание</p>
+            <ol>
+                <li><a href="#system"><span class="toc-num">00</span><span>Что мы собираем</span></a></li>
+                <li><a href="#before"><span class="toc-num">01</span><span>Перед стартом</span></a></li>
+                <li><a href="#dashboard"><span class="toc-num">02</span><span>Дашборд</span></a></li>
+                <li><a href="#voice"><span class="toc-num">03</span><span>Голос</span></a></li>
+                <li><a href="#browser"><span class="toc-num">04</span><span>Браузер</span></a></li>
+                <li><a href="#business"><span class="toc-num">05</span><span>Деньги и контент</span></a></li>
+                <li><a href="#inbox"><span class="toc-num">06</span><span>Почта и поддержка</span></a></li>
+                <li><a href="#agents"><span class="toc-num">07</span><span>Специалисты</span></a></li>
+                <li><a href="#schedule"><span class="toc-num">08</span><span>Расписание</span></a></li>
+                <li><a href="#order"><span class="toc-num">09</span><span>Порядок сборки</span></a></li>
+            </ol>
+        </nav>
+
+        <article>
+            <p class="lede">В ролике кажется, что Джарвис устанавливается одной кнопкой. В реальности это несколько знакомых инструментов, собранных вокруг Claude Code. Самый рабочий подход: одно подключение, один тест, одна проверка. Потом следующий слой.</p>
+
+            <section class="chapter" id="system">
+                <p class="chapter-kicker">00 · Модель системы</p>
+                <h2>Что ты на самом деле строишь</h2>
+                <p>Claude Code работает в терминале или в веб-версии. Он читает файлы, запускает команды, пишет код и подключается к другим приложениям. Прямой доступ к сервисам обычно дают MCP-коннекторы. Каждый коннектор связывает Claude с одной системой: Gmail, RevenueCat, Metricool или другим источником.</p>
+                <ol class="layers">
+                    <li><strong>Мозг</strong><span>Claude Code принимает запрос, собирает контекст и решает, какие инструменты вызвать.</span></li>
+                    <li><strong>Подключения</strong><span>MCP-коннекторы дают доступ к почте, аналитике, публикациям и другим сервисам.</span></li>
+                    <li><strong>Интерфейс</strong><span>Дашборд показывает цифры, приоритеты, статусы подключений и голосовой бриф.</span></li>
+                    <li><strong>Правила</strong><span>Навыки и специалисты объясняют, как выполнять повторяемую работу и где остановиться.</span></li>
+                </ol>
+                <div class="formula">Claude Code + нужные коннекторы + твои правила + проверка человеком = личный Джарвис</div>
+                <div class="callout">
+                    <strong>Главное правило</strong>
+                    <p>Не подключай всё сразу. Добавь один сервис, проверь чтение реальных данных и только потом разрешай действия.</p>
+                </div>
+            </section>
+
+            <section class="chapter" id="before">
+                <p class="chapter-kicker">01 · Перед стартом</p>
+                <h2>Подготовь Claude Code и аккаунты</h2>
+                <p>Понадобится платный план Claude, установленный Claude Code и аккаунты в тех сервисах, которые ты собираешься подключать. Голос, Chrome, Design, специалисты и облачные расписания расходуют общий лимит плана.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Установка Claude Code</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать команду установки">Скопировать</button>
+                    </div>
+                    <pre><code>npm install -g @anthropic-ai/claude-code
+claude</code></pre>
+                </div>
+                <h3>Как подключать MCP</h3>
+                <p>Для HTTP-коннектора используй команду ниже. После добавления открой <code>/mcp</code>, закончи OAuth-вход и проверь соединение. Если планируешь облачные routines, добавь тот же коннектор в веб-версии Claude.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Шаблон подключения</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать шаблон MCP">Скопировать</button>
+                    </div>
+                    <pre><code>claude mcp add --transport http NAME https://адрес-коннектора/mcp
+/mcp</code></pre>
+                </div>
+                <div class="callout warning">
+                    <strong>Первый тест всегда в режиме чтения</strong>
+                    <p>Попроси показать данные и прямо запрети изменения. Успешная авторизация ещё не доказывает, что коннектор возвращает правильный аккаунт и правильные данные.</p>
+                </div>
+            </section>
+
+            <section class="chapter" id="dashboard">
+                <p class="chapter-kicker">02 · Лицо Джарвиса</p>
+                <h2>Собери дашборд</h2>
+                <p>Есть два нормальных пути. Первый: приложить референс и попросить Claude Code собрать автономную HTML-страницу. Второй: сначала сделать макет через Claude Design, а затем отправить его в Claude Code.</p>
+                <ul>
+                    <li><strong>По изображению.</strong> Добавь скриншот как <code>@mockup.png</code>. После первой версии попроси сделать скриншот результата, сравнить его с референсом, перечислить отличия и повторять исправления до близкого совпадения.</li>
+                    <li><strong>Через Claude Design.</strong> Создай интерфейс в <a href="https://claude.ai/design" target="_blank" rel="noopener noreferrer">claude.ai/design</a> или через <code>/design</code>, затем продолжи работу в Claude Code.</li>
+                </ul>
+                <p>Плотный интерфейс редко получается идеально за один проход. Автоматический цикл работает только тогда, когда агент умеет сам открыть страницу и сделать скриншот. Иначе сравнивать придётся тебе.</p>
+                <h3>Промпт для кинематографичного центра управления</h3>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Дашборд «Джарвис»</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать промпт дашборда">Скопировать</button>
+                    </div>
+                    <pre><code>Собери автономный dashboard.html в стиле командного центра «Джарвис».
+
+Фон почти чёрный, с холодным синим оттенком. В центре находится светящаяся голубая сфера из сотен точек на Canvas. Она медленно вращается, мягко пульсирует в режиме ожидания и реагирует сильнее во время голосового ответа.
+
+Добавь вокруг сферы орбиту, HUD-дуги, радиальные лучи и деления. Поверх интерфейса размести:
+• название «Джарвис», дату и живые часы;
+• статусы подключений;
+• поток последних действий;
+• панель показателей и полосы прогресса;
+• главные цифры и приоритеты дня;
+• кнопку BRIEF ME и бегущую строку.
+
+Данные читай из отдельного jarvis_data.js через window.JARVIS_DATA. Добавь скрытый аудиоплеер jarvis_brief.mp3. Во время воспроизведения сфера должна переходить в режим speaking.
+
+Используй обычные HTML, CSS и JavaScript без библиотек. Поддержи Retina-экраны, reduced motion и мобильную версию. После сборки открой страницу, сделай скриншот, найди визуальные проблемы и исправь их.</code></pre>
+                </div>
+                <p>Повседневные цифры храни в <code>jarvis_data.js</code>. Тогда дизайн не придётся переписывать каждый день. Аудиобриф лежит рядом как <code>jarvis_brief.mp3</code>.</p>
+            </section>
+
+            <section class="chapter" id="voice">
+                <p class="chapter-kicker">03 · Голос</p>
+                <h2>Научи его слушать и отвечать</h2>
+                <p>Здесь две независимые части: голосовой ввод и озвучивание ответа.</p>
+                <h3>Говорить с Claude</h3>
+                <p>В Claude Code включи голос через <code>/voice</code>. Удерживай пробел, говори и отпускай для отправки. Режим <code>/voice tap</code> переключает запись нажатием. Голос превращается в обычный текстовый запрос.</p>
+                <h3>Получать голосовой ответ</h3>
+                <p>Для голоса в стиле британского дворецкого подойдёт Fish Audio. Можно выбрать библиотечный голос или клонировать собственный голос из чистой записи. Не клонируй знаменитостей для публикации: это создаёт проблемы с правами на образ и голос.</p>
+                <p>Надёжный вариант: небольшой скрипт отправляет текст ответа в <code>https://api.fish.audio/v1/tts</code>, получает MP3 и воспроизводит его. Так проще выбрать модель, голос и эмоциональные теги, чем полагаться на сторонний MCP с устаревшими настройками.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Полный голосовой цикл</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать голосовой промпт">Скопировать</button>
+                    </div>
+                    <pre><code>Собери небольшой локальный Python-сервер для моего дашборда.
+
+Он должен:
+1. раздавать dashboard.html через localhost;
+2. принимать текст в POST /ask;
+3. отправлять запрос в Claude Code через claude -p;
+4. возвращать текст ответа;
+5. превращать ответ в речь через Fish Audio API;
+6. отдавать MP3 браузеру;
+7. добавить в дашборд кнопку микрофона, распознавание речи и воспроизведение ответа;
+8. переключать визуальную сферу в режим speaking во время аудио.
+
+Ключи бери только из переменных окружения. Добавь понятную инструкцию запуска и обработку ошибок.</code></pre>
+                </div>
+                <p>Открывай дашборд через <code>localhost</code>, а не как локальный файл. Браузерные разрешения на микрофон и сетевые запросы так работают предсказуемее.</p>
+                <div class="callout warning">
+                    <strong>Альтернативный путь</strong>
+                    <p>Hermes Agent уже умеет голосовой режим и работает как отдельный open-source агент. Это самостоятельная архитектура, а не обязательное дополнение к Claude Code и Fish Audio.</p>
+                </div>
+            </section>
+
+            <figure class="plate-break">
+                <img src="assets/nike-samothrace.jpg" alt="Крылатая Ника Самофракийская в Лувре" width="1280" height="1939">
+                <figcaption>
+                    <span>Таблица I · Ника Самофракийская</span>
+                    <span>Лувр · около 190 года до н. э.</span>
+                </figcaption>
+            </figure>
+
+            <section class="chapter" id="browser">
+                <p class="chapter-kicker">04 · Действия в интернете</p>
+                <h2>Дай ему браузер</h2>
+                <p>Расширение Claude для Chrome добавляет боковую панель и позволяет агенту читать страницы, нажимать кнопки, заполнять формы и вытаскивать данные из дашбордов. Доступ выдаётся отдельно для каждого сайта.</p>
+                <p>Оставь подтверждение каждого действия. Постоянное разрешение имеет смысл только на полностью доверенном сервисе с ограниченными последствиями.</p>
+                <div class="formula">прочитать страницу → показать найденное → подготовить действие → получить подтверждение → выполнить</div>
+                <div class="callout warning">
+                    <strong>Браузер действует внутри твоего аккаунта</strong>
+                    <p>Страница может содержать вредоносную инструкцию для агента. Не давай свободный доступ к банку, менеджеру паролей и незнакомым сайтам.</p>
+                </div>
+            </section>
+
+            <section class="chapter" id="business">
+                <p class="chapter-kicker">05 · Метрики и публикации</p>
+                <h2>Подключи деньги, контент и рекламу</h2>
+                <h3>RevenueCat</h3>
+                <p>Если приложение или подписка работают через RevenueCat, подключи официальный MCP и начни с ключа только для чтения.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">RevenueCat MCP</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать команду RevenueCat">Скопировать</button>
+                    </div>
+                    <pre><code>claude mcp add --transport http revenuecat https://mcp.revenuecat.ai/mcp</code></pre>
+                </div>
+                <p>Первый запрос: «Покажи активные подписки и выручку за этот месяц в сравнении с прошлым. Ничего не меняй».</p>
+                <h3>Автопостинг</h3>
+                <div class="table-wrap" aria-label="Инструменты публикации" tabindex="0">
+                    <table>
+                        <thead><tr><th>Инструмент</th><th>Когда выбирать</th><th>Ограничение</th></tr></thead>
+                        <tbody>
+                            <tr><td>Metricool MCP</td><td>Нужны публикации, аналитика и рекомендации по времени</td><td>Сначала проверь на черновике или тестовом канале</td></tr>
+                            <tr><td>Buffer MCP</td><td>Нужна простая очередь публикаций</td><td>Каналы обрабатываются отдельно, аналитики меньше</td></tr>
+                            <tr><td>Postiz</td><td>Нужен open-source и самостоятельный хостинг</td><td>Больше обслуживания</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>Meta Ads</h3>
+                <p>Рекламный коннектор Meta может читать показатели кампаний и менять бюджеты после подтверждения. Точный адрес официального MCP проверь в Meta Business Help перед подключением. Начинай только с чтения: «Покажи активные группы объявлений за 7 дней, отсортируй по CPM и ничего не меняй».</p>
+                <div class="callout warning">
+                    <strong>Реклама тратит реальные деньги</strong>
+                    <p>Сначала режим чтения. Затем лимиты бюджета внутри Meta. Только после нескольких проверок можно разрешать изменения с отдельным подтверждением.</p>
+                </div>
+            </section>
+
+            <section class="chapter" id="inbox">
+                <p class="chapter-kicker">06 · Входящие и поддержка</p>
+                <h2>Разбирай почту и готовь ответы</h2>
+                <h3>Gmail</h3>
+                <p>Официальный Gmail-коннектор умеет искать и читать письма, ставить метки и создавать черновики. Отправку оставь себе.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Разбор входящих</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать промпт почты">Скопировать</button>
+                    </div>
+                    <pre><code>Прочитай непрочитанные письма за последние два дня.
+Раздели их на три группы: нужен ответ, к сведению, можно проигнорировать.
+Для первой группы подготовь короткие черновики в моём стиле.
+Не отправляй письма и не меняй настройки почты.</code></pre>
+                </div>
+                <h3>Ответы клиентам в твоём стиле</h3>
+                <p>Создай навык поддержки и отдельную базу знаний. В папке навыка держи <code>SKILL.md</code>, <code>faqs.md</code>, правила возврата и шаблон ответа. Большие справочники должны загружаться только при вопросах поддержки.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Правила навыка поддержки</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать правила поддержки">Скопировать</button>
+                    </div>
+                    <pre><code>Перед ответом прочитай faqs.md и refund-policy.md.
+Если ответ подтверждён базой знаний, подготовь черновик в моём стиле.
+Если информации нет или правила противоречат друг другу, передай вопрос мне.
+Не придумывай политику и всегда помечай результат как ЧЕРНОВИК.</code></pre>
+                </div>
+                <p>«Автоматизировать 90% поддержки» здесь означает подготовить черновики. Автономную отправку не включай, пока система много раз не отработала без ошибок.</p>
+            </section>
+
+            <section class="chapter" id="agents">
+                <p class="chapter-kicker">07 · Специалисты</p>
+                <h2>Собери маленькую команду</h2>
+                <p>Специалист работает в отдельном контексте со своим набором инструментов и подключений. Главный диалог остаётся чистым, а задача уходит агенту с подходящей ролью.</p>
+                <p>Файлы специалистов лежат в <code>~/.claude/agents/</code>. Начни с одного или двух. Десять агентов на старте только усложнят маршрутизацию.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">tom.md · разработчик</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать агента разработчика">Скопировать</button>
+                    </div>
+                    <pre><code>---
+name: tom
+description: Разработчик для ревью PR и реализации уже согласованных изменений.
+tools: Read, Edit, Write, Bash, Grep, Glob
+model: opus
+mcpServers:
+  - github
+---
+Ты старший разработчик. Работай только по согласованному направлению.
+Изучи изменение, реализуй его, запусти тесты и верни краткий отчёт с рисками.</code></pre>
+                </div>
+                <p><code>description</code> отвечает за маршрутизацию, <code>tools</code> ограничивает инструменты, <code>model</code> задаёт модель, а <code>mcpServers</code> выдаёт коннектор только этому специалисту.</p>
+            </section>
+
+            <section class="chapter" id="schedule">
+                <p class="chapter-kicker">08 · Автоматический запуск</p>
+                <h2>Запускай бриф по расписанию</h2>
+                <p>Claude Code routines выполняются в облаке, даже когда ноутбук закрыт. Расписание можно создать командой или в веб-интерфейсе.</p>
+                <div class="prompt">
+                    <div class="prompt-head">
+                        <span class="prompt-label">Ежедневный бриф</span>
+                        <button class="copy-button" type="button" data-copy aria-label="Скопировать расписание">Скопировать</button>
+                    </div>
+                    <pre><code>/schedule daily brief at 9am</code></pre>
+                </div>
+                <div class="callout warning">
+                    <strong>В routine нет диалога для подтверждения</strong>
+                    <p>Она запускается автономно и может писать через подключённые сервисы. Оставь только необходимые коннекторы, запрети отправку, публикацию и удаление, а промпт сделай полностью самодостаточным.</p>
+                </div>
+                <p>Пусть routine складывает результат в конкретную страницу Notion или другой проверяемый источник. Зелёный статус означает только запуск. Первую неделю читай каждый результат.</p>
+                <p>Если нужны локальные файлы iCloud, используй расписание на компьютере. В этом случае Mac должен быть включён.</p>
+            </section>
+
+            <section class="chapter" id="order">
+                <p class="chapter-kicker">09 · Последовательность</p>
+                <h2>В каком порядке это собирать</h2>
+                <ol class="sequence">
+                    <li>Установи Claude Code и подключи один источник только для чтения.</li>
+                    <li>Включи встроенный голос. Отдельный TTS добавляй после проверки.</li>
+                    <li>Собери базу знаний и навык поддержки без доступа к Gmail.</li>
+                    <li>Подключи Gmail и оставь только черновики.</li>
+                    <li>Подключи аналитику и рекламу в режиме чтения.</li>
+                    <li>Выбери один инструмент публикации и проверь на тестовом канале.</li>
+                    <li>Добавь одного специалиста с минимальными правами.</li>
+                    <li>Создай routine только после того, как ручной сценарий стал стабильным.</li>
+                </ol>
+                <div class="formula">сначала чтение → затем запись · сначала один коннектор → затем второй · сначала проверка → затем доверие</div>
+            </section>
+
+            <section class="quick-start" id="quick-start">
+                <p class="chapter-kicker">Главное ограничение</p>
+                <h2>Оставь человека в контуре</h2>
+                <p>Три зоны дают реальные последствия: браузер действует в авторизованных аккаунтах, реклама тратит деньги, а почта говорит от твоего имени.</p>
+                <ol class="sequence">
+                    <li>Браузер показывает подготовленное действие до клика.</li>
+                    <li>Реклама работает в пределах лимитов, заданных в Meta.</li>
+                    <li>Письма и ответы клиентам остаются черновиками.</li>
+                    <li>Джарвис предлагает. Ты утверждаешь.</li>
+                </ol>
+            </section>
+
+            <section class="chapter" id="links">
+                <p class="chapter-kicker">Ссылки</p>
+                <h2>Что понадобится</h2>
+                <ul>
+                    <li><a href="https://claude.com" target="_blank" rel="noopener noreferrer">Claude</a> и <a href="https://code.claude.com/docs" target="_blank" rel="noopener noreferrer">документация Claude Code</a></li>
+                    <li><a href="https://fish.audio" target="_blank" rel="noopener noreferrer">Fish Audio</a> для отдельного голоса</li>
+                    <li><a href="https://mcp.revenuecat.ai/mcp" target="_blank" rel="noopener noreferrer">RevenueCat MCP</a></li>
+                    <li><a href="https://ai.metricool.com/mcp" target="_blank" rel="noopener noreferrer">Metricool MCP</a>, <a href="https://mcp.buffer.com/mcp" target="_blank" rel="noopener noreferrer">Buffer MCP</a> и <a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener noreferrer">Postiz</a></li>
+                    <li><a href="https://github.com/nousresearch/hermes-agent" target="_blank" rel="noopener noreferrer">Hermes Agent</a> как отдельный open-source вариант</li>
+                </ul>
+            </section>
+
+            <section class="cta" aria-labelledby="cta-title">
+                <p class="chapter-kicker">Продолжение</p>
+                <h2 id="cta-title">Джарвис предлагает. Ты утверждаешь.</h2>
+                <p>Больше практики про AI-агентов, автоматизацию и создание продуктов без магического мышления в Telegram.</p>
+                <a class="cta-button" href="https://t.me/buhaistrikalo" target="_blank" rel="noopener noreferrer">Перейти в канал →</a>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <span>© 2026 @buhaistrikalo</span>
+        <span>Claude Code: <a href="https://code.claude.com/docs" target="_blank" rel="noopener noreferrer">официальная документация</a></span>
+        <span class="image-credits">Основано на <a href="https://cindyzhu.com.au/guides/build-your-own-jarvis-with-claude.html" target="_blank" rel="noopener noreferrer">оригинальном гайде Cindy Zhu</a>. Текст переработан и дополнен.</span>
+    </footer>
+
+    <script>
+        (() => {
+            const buttons = document.querySelectorAll("[data-copy]");
+            const tocLinks = [...document.querySelectorAll(".toc a")];
+            const sections = tocLinks
+                .map((link) => document.querySelector(link.getAttribute("href")))
+                .filter(Boolean);
+
+            buttons.forEach((button) => {
+                button.setAttribute("aria-live", "polite");
+                button.addEventListener("click", async () => {
+                    const code = button.closest(".prompt")?.querySelector("code");
+                    if (!code) return;
+
+                    const original = button.textContent;
+                    try {
+                        await navigator.clipboard.writeText(code.textContent.trim());
+                        button.textContent = "Скопировано";
+                    } catch {
+                        const selection = window.getSelection();
+                        const range = document.createRange();
+                        range.selectNodeContents(code);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                        button.textContent = "Выделено";
+                    }
+
+                    window.setTimeout(() => {
+                        button.textContent = original;
+                    }, 1800);
+                });
+            });
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    const visible = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                    if (!visible) return;
+                    tocLinks.forEach((link) => link.removeAttribute("aria-current"));
+                    const active = tocLinks.find((link) => link.getAttribute("href") === `#${visible.target.id}`);
+                    active?.setAttribute("aria-current", "location");
+                }, {
+                    rootMargin: "-18% 0px -68% 0px",
+                    threshold: [0, 0.25, 0.6]
+                });
+
+                sections.forEach((section) => observer.observe(section));
+            }
+        })();
+    </script>
+</body>
+</html>

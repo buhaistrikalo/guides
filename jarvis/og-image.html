@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <title>OG Image — Собери своего Джарвиса с Claude</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 1200px;
+            height: 630px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 312px;
+            gap: 74px;
+            align-items: center;
+            padding: 66px 72px;
+            background:
+                radial-gradient(circle at 82% 30%, rgba(99, 230, 211, 0.16), transparent 270px),
+                #0b0c0f;
+            color: #f2f1ed;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            inset: 28px;
+            border: 1px solid #292d35;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 28px;
+            color: #63e6d3;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 17px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+            font-size: 92px;
+            font-weight: 400;
+            letter-spacing: -0.055em;
+            line-height: 0.92;
+        }
+
+        h1 span {
+            color: #63e6d3;
+        }
+
+        .subtitle {
+            max-width: 720px;
+            margin: 30px 0 0;
+            color: #b1b2b8;
+            font-size: 23px;
+            line-height: 1.4;
+        }
+
+        .panel {
+            border-top: 3px solid #63e6d3;
+            padding-top: 26px;
+        }
+
+        .panel strong {
+            display: block;
+            margin-bottom: 18px;
+            font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+            font-size: 34px;
+            font-weight: 400;
+            line-height: 1.13;
+        }
+
+        .panel p {
+            margin: 0;
+            color: #777b85;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .author {
+            position: absolute;
+            right: 72px;
+            bottom: 54px;
+            color: #f2bd6b;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="eyebrow">Полный гайд · Claude Code</p>
+        <h1>Собери своего <span>Джарвиса</span></h1>
+        <p class="subtitle">Дашборд, голос, браузер, почта и автоматизация</p>
+    </main>
+    <aside class="panel">
+        <strong>Не скачивай.<br>Собери сам.</strong>
+        <p>10 частей<br>готовые команды<br>честная схема</p>
+    </aside>
+    <div class="author">@buhaistrikalo</div>
+</body>
+</html>
